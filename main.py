@@ -1,3 +1,4 @@
+import sys
 import pygame
 import pygame.display as display
 import pygame.event as event_man
@@ -24,7 +25,10 @@ def main():
                 return
         for gameobject in updatable:
             gameobject.update(dt)
-        
+        for asteroid in asteroids:
+            if asteroid.collides_with(player1):
+                print("Game over!")
+                sys.exit()
         screen.fill(color="black")
         for gameobject in drawable:
             gameobject.draw(screen)
